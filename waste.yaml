@@ -1,4 +1,4 @@
-path: data/processed/garbage-classification-3
+path: data/processed/garbage-classification-3-stratified-v2
 train: images/train
 val: images/valid
 test: images/test

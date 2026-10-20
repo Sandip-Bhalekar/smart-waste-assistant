@@ -78,8 +78,8 @@ py -3.11 -m venv .venv
 pip install -r requirements.txt
 python scripts/download_dataset.py
 python scripts/inspect_dataset.py
-python scripts/prepare_dataset.py
-python scripts/validate_dataset.py
+python scripts/prepare_stratified_dataset.py --seed 42 --phash-distance 4
+python scripts/validate_dataset.py --processed-root data/processed/garbage-classification-3-stratified-v2
 python scripts/train.py --epochs 50 --imgsz 416
 python scripts/tune_threshold.py
 python scripts/evaluate.py --split test
@@ -94,7 +94,7 @@ CPU training is slow. Prefer the Colab notebook for the accuracy-focused run.
 3. Run every cell in order.
 4. Download `best.pt` from the notebook’s `models/` folder into this project’s `models/best.pt`.
 
-The notebook records hardware, duration, and validation metrics. Test-set numbers come from `evaluate.py` only.
+The notebook rebuilds and validates the stratified split, records hardware and duration, and evaluates the held-out test set only after training. Dataset samples and measured counts are in [docs/dataset_report.md](docs/dataset_report.md).
 
 ## Evaluation methodology
 
