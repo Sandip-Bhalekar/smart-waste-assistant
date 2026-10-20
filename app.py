@@ -39,6 +39,7 @@ st.markdown(APP_CSS, unsafe_allow_html=True)
 MAX_UPLOAD_MB = int(os.getenv("MAX_UPLOAD_MB", "8"))
 DEFAULT_CONF = float(os.getenv("CONFIDENCE_THRESHOLD", "0.35"))
 IOU = float(os.getenv("IOU_THRESHOLD", "0.45"))
+INFERENCE_IMAGE_SIZE = int(os.getenv("INFERENCE_IMAGE_SIZE", "832"))
 EXAMPLES_DIR = ROOT / "assets" / "examples"
 
 
@@ -168,7 +169,13 @@ if analyze:
                 st.write("Preparing image.")
                 model = get_model()
                 st.write("Analyzing waste.")
-                raw = run_inference(image, model=model, conf=0.15, iou=IOU, imgsz=416)
+                raw = run_inference(
+                    image,
+                    model=model,
+                    conf=0.15,
+                    iou=IOU,
+                    imgsz=INFERENCE_IMAGE_SIZE,
+                )
                 st.write("Generating segregation guidance.")
                 analysis = aggregate_detections(raw["detections"], confidence_threshold=conf)
                 analysis["model_version"] = MODEL_VERSION
