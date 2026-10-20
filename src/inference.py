@@ -42,7 +42,7 @@ def run_inference(
     weights_path: Optional[Path] = None,
     conf: float = 0.15,
     iou: float = 0.45,
-    imgsz: int = 416,
+    imgsz: int = 640,
     device: Optional[str] = None,
 ) -> Dict[str, Any]:
     """Run object detection. Bounding boxes are returned for aggregation only."""

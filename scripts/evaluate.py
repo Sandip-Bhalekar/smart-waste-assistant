@@ -86,6 +86,7 @@ def image_level_category_scores(model, images_dir: Path, labels_dir: Path, conf:
     image_count = 0
     latencies = []
     samples = []
+    error_samples = []
     for image_path in sorted(images_dir.glob("*")):
         if image_path.suffix.lower() not in {".jpg", ".jpeg", ".png"}:
             continue
@@ -123,6 +124,16 @@ def image_level_category_scores(model, images_dir: Path, labels_dir: Path, conf:
                     "status": "correct" if expected == predicted else "mismatch",
                 }
             )
+        if expected != predicted and len(error_samples) < 30:
+            error_samples.append(
+                {
+                    "image": image_path.name,
+                    "expected": sorted(expected),
+                    "predicted": sorted(predicted),
+                    "missed_categories": sorted(expected - predicted),
+                    "false_positive_categories": sorted(predicted - expected),
+                }
+            )
     precision = tp / max(tp + fp, 1)
     recall = tp / max(tp + fn, 1)
     return {
@@ -140,6 +151,7 @@ def image_level_category_scores(model, images_dir: Path, labels_dir: Path, conf:
         },
         "mean_latency_ms": round(sum(latencies) / max(len(latencies), 1), 2),
         "samples": samples,
+        "error_samples": error_samples,
     }
 
 
@@ -172,6 +184,28 @@ def write_markdown(report: dict) -> Path:
         f"- Recall: {report['image_level'].get('image_level_recall')}",
         f"- Mean latency (ms): {report['image_level'].get('mean_latency_ms')}",
         "",
+        "## Image-level error review",
+        "",
+    ]
+    error_samples = report.get("image_level", {}).get("error_samples", [])
+    if error_samples:
+        lines.extend(
+            [
+                "Review these mismatches first. They are category-presence errors, not box-level false-positive/false-negative counts.",
+                "",
+                "| Image | Missed categories | False-positive categories |",
+                "| --- | --- | --- |",
+            ]
+        )
+        for sample in error_samples:
+            lines.append(
+                f"| `{sample['image']}` | {', '.join(sample['missed_categories']) or '—'} "
+                f"| {', '.join(sample['false_positive_categories']) or '—'} |"
+            )
+    else:
+        lines.append("No mismatch samples were recorded. Rerun `scripts/evaluate.py` to generate a review queue.")
+    lines.extend([
+        "",
         "## Notes",
         "",
         "- mAP measures bounding-box detection quality.",
@@ -179,7 +213,7 @@ def write_markdown(report: dict) -> Path:
         "- Classification accuracy is not reported because this is a multi-object detector.",
         "- Do not treat a missing category as proof that the material is absent.",
         "",
-    ]
+    ])
     out = reports_dir() / "evaluation_report.md"
     out.write_text("\n".join(lines), encoding="utf-8")
     json_path = reports_dir() / "evaluation_metrics.json"
@@ -192,7 +226,7 @@ def main() -> None:
     parser.add_argument("--weights", type=Path, default=default_model_path())
     parser.add_argument("--data", type=Path, default=project_root() / "waste.yaml")
     parser.add_argument("--split", type=str, default="test")
-    parser.add_argument("--imgsz", type=int, default=416)
+    parser.add_argument("--imgsz", type=int, default=640)
     parser.add_argument("--device", type=str, default=None)
     parser.add_argument("--conf", type=float, default=0.35)
     args = parser.parse_args()

@@ -1,0 +1,16 @@
+# Train on the existing dataset plus manually reviewed mixed-scene images.
+# Add data/real-world using the layout in docs/real_world_data.md first.
+path: .
+train:
+  - data/processed/garbage-classification-3-stratified-v2/images/train
+  - data/real-world/images/train
+val: data/real-world/images/valid
+test: data/real-world/images/test
+names:
+  0: biodegradable
+  1: cardboard
+  2: glass
+  3: metal
+  4: paper
+  5: plastic
+nc: 6

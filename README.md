@@ -80,7 +80,7 @@ python scripts/download_dataset.py
 python scripts/inspect_dataset.py
 python scripts/prepare_stratified_dataset.py --seed 42 --phash-distance 4
 python scripts/validate_dataset.py --processed-root data/processed/garbage-classification-3-stratified-v2
-python scripts/train.py --epochs 50 --imgsz 416
+python scripts/train.py --epochs 50 --imgsz 640
 python scripts/tune_threshold.py
 python scripts/evaluate.py --split test
 ```
@@ -105,7 +105,7 @@ The notebook rebuilds and validates the stratified split, records hardware and d
 - Confusion matrices and curves are written under `runs/` by Ultralytics when evaluation runs.
 - Confidence default is 0.35 until `tune_threshold.py` selects another value on validation F1.
 
-Do not call mAP “accuracy”. Current numbers live in [docs/evaluation_report.md](docs/evaluation_report.md) only after a real eval run.
+Do not call mAP “accuracy”. Current numbers live in [docs/evaluation_report.md](docs/evaluation_report.md) only after a real eval run. The default training and inference size is 640; Ultralytics letterboxes images to preserve the input aspect ratio. The supplied dataset images are already 416×416, so their original proportions cannot be recovered from that export. Keep newly collected photos at their native dimensions. See [docs/real_world_data.md](docs/real_world_data.md) for preparing mixed-scene data and a separate real-world holdout.
 
 ## Run the application locally (Windows)
 

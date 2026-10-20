@@ -83,7 +83,7 @@ def main() -> None:
     parser.add_argument("--data", type=Path, default=project_root() / "waste.yaml")
     parser.add_argument("--model", type=str, default=None, help="Ultralytics checkpoint or YAML, e.g. yolo11n.pt")
     parser.add_argument("--epochs", type=int, default=50)
-    parser.add_argument("--imgsz", type=int, default=416)
+    parser.add_argument("--imgsz", type=int, default=640)
     parser.add_argument("--batch", type=int, default=None)
     parser.add_argument("--device", type=str, default=None)
     parser.add_argument("--seed", type=int, default=42)
@@ -135,14 +135,14 @@ def main() -> None:
         optimizer="AdamW",
         lr0=0.001 if device != "cpu" else 0.0005,
         lrf=0.01,
-        mosaic=1.0,
-        mixup=0.1,
+        mosaic=0.5,
+        mixup=0.0,
         hsv_h=0.015,
         hsv_s=0.5,
         hsv_v=0.3,
-        degrees=8.0,
+        degrees=5.0,
         translate=0.08,
-        scale=0.4,
+        scale=0.3,
         fliplr=0.5,
         flipud=0.0,
         close_mosaic=10,
