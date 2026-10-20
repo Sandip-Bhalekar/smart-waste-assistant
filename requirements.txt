@@ -1,0 +1,15 @@
+ultralytics>=8.3.0,<9
+torch>=2.2.0
+torchvision>=0.17.0
+streamlit>=1.36.0
+pillow>=10.0.0
+numpy>=1.24.0
+opencv-python-headless>=4.8.0
+python-dotenv>=1.0.1
+cloudinary>=1.41.0
+pandas>=2.1.0
+matplotlib>=3.8.0
+seaborn>=0.13.0
+pytest>=8.0.0
+pyyaml>=6.0.1
+requests>=2.31.0

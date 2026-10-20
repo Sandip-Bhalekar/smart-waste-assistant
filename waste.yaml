@@ -1,0 +1,13 @@
+# Placeholder until scripts/prepare_dataset.py writes a path-specific copy.
+path: data/processed/garbage-classification-3
+train: images/train
+val: images/valid
+test: images/test
+names:
+  0: biodegradable
+  1: cardboard
+  2: glass
+  3: metal
+  4: paper
+  5: plastic
+nc: 6
