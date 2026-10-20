@@ -1,0 +1,237 @@
+{
+  "weights": "models\\best.pt",
+  "model_size_mb": 5.225,
+  "data": "data\\processed\\garbage-classification-3-stratified-v2\\waste.yaml",
+  "split": "test",
+  "device": "cpu",
+  "confidence_threshold": 0.35,
+  "detection": {
+    "precision": 0.6954970158111339,
+    "recall": 0.5034492552680252,
+    "mAP50": 0.5843602982250031,
+    "mAP50-95": 0.4094208127740083,
+    "fit_time": {
+      "preprocess": 0.7360423923495563,
+      "inference": 22.95271674641399,
+      "loss": 8.631579049597784e-05,
+      "postprocess": 2.3204389473642477
+    },
+    "save_dir": "C:\\Users\\sandip bhalekar\\smart-waste-assistant\\runs\\detect\\val",
+    "per_class_ap50_95": {
+      "biodegradable": 0.34438089643661923,
+      "cardboard": 0.41633935399366184,
+      "glass": 0.531398791156892,
+      "metal": 0.37092773166353044,
+      "paper": 0.47377762697218373,
+      "plastic": 0.3197004764211634
+    },
+    "box": {
+      "p": [
+        0.8115764473077282,
+        0.6091494332284703,
+        0.73973358446749,
+        0.67831326639674,
+        0.6846430756125935,
+        0.6495662878537813
+      ],
+      "r": [
+        0.4753623188405797,
+        0.4789156626506024,
+        0.6519685039370079,
+        0.4676258992805755,
+        0.5460051509893648,
+        0.40081799591002043
+      ],
+      "ap50": [
+        0.6221516135529626,
+        0.5350802892392911,
+        0.7100678721496407,
+        0.523093122576672,
+        0.6162904336824694,
+        0.4994784581489833
+      ],
+      "ap": [
+        0.34438089643661923,
+        0.41633935399366184,
+        0.531398791156892,
+        0.37092773166353044,
+        0.47377762697218373,
+        0.3197004764211634
+      ]
+    }
+  },
+  "image_level": {
+    "available": true,
+    "images": 1045,
+    "image_level_precision": 0.8159,
+    "image_level_recall": 0.8391,
+    "per_class": {
+      "Organic Waste": {
+        "tp": 213,
+        "fp": 9,
+        "fn": 16,
+        "precision": 0.9595,
+        "recall": 0.9301
+      },
+      "Cardboard": {
+        "tp": 126,
+        "fp": 20,
+        "fn": 24,
+        "precision": 0.863,
+        "recall": 0.84
+      },
+      "Glass": {
+        "tp": 246,
+        "fp": 48,
+        "fn": 24,
+        "precision": 0.8367,
+        "recall": 0.9111
+      },
+      "Metal": {
+        "tp": 129,
+        "fp": 56,
+        "fn": 61,
+        "precision": 0.6973,
+        "recall": 0.6789
+      },
+      "Paper": {
+        "tp": 154,
+        "fp": 33,
+        "fn": 23,
+        "precision": 0.8235,
+        "recall": 0.8701
+      },
+      "Plastic": {
+        "tp": 107,
+        "fp": 54,
+        "fn": 39,
+        "precision": 0.6646,
+        "recall": 0.7329
+      }
+    },
+    "mean_latency_ms": 36.76,
+    "samples": [
+      {
+        "image": "biodegradable1004_jpg.rf.645d319975e53c260b201677f2f39981.jpg",
+        "expected": [
+          "biodegradable"
+        ],
+        "predicted": [
+          "biodegradable"
+        ],
+        "status": "correct"
+      },
+      {
+        "image": "biodegradable1015_jpg.rf.74f721a0ce9759027139c22566d38dc9.jpg",
+        "expected": [
+          "biodegradable"
+        ],
+        "predicted": [
+          "biodegradable"
+        ],
+        "status": "correct"
+      },
+      {
+        "image": "biodegradable1020_jpg.rf.ae69eadc714124b08e26002722c0fe25.jpg",
+        "expected": [
+          "biodegradable",
+          "paper"
+        ],
+        "predicted": [
+          "biodegradable"
+        ],
+        "status": "mismatch"
+      },
+      {
+        "image": "biodegradable1045_jpg.rf.1078eeb19e3e33918012134c80c8a115.jpg",
+        "expected": [
+          "biodegradable"
+        ],
+        "predicted": [
+          "biodegradable"
+        ],
+        "status": "correct"
+      },
+      {
+        "image": "biodegradable1048_jpg.rf.5f97e533843b67a16ed037b3135e8808.jpg",
+        "expected": [
+          "biodegradable"
+        ],
+        "predicted": [
+          "biodegradable"
+        ],
+        "status": "correct"
+      },
+      {
+        "image": "biodegradable1049_jpg.rf.624a77d25fb297c5361fc8cd307e32a6.jpg",
+        "expected": [
+          "biodegradable"
+        ],
+        "predicted": [
+          "biodegradable"
+        ],
+        "status": "correct"
+      },
+      {
+        "image": "biodegradable1050_jpg.rf.1224511d9ce6bdc81974d80a844f0d66.jpg",
+        "expected": [
+          "biodegradable"
+        ],
+        "predicted": [
+          "biodegradable"
+        ],
+        "status": "correct"
+      },
+      {
+        "image": "biodegradable1076_jpg.rf.d9d6040c5469a0ccde14f0b896e803e0.jpg",
+        "expected": [
+          "biodegradable"
+        ],
+        "predicted": [
+          "biodegradable"
+        ],
+        "status": "correct"
+      },
+      {
+        "image": "biodegradable1077_jpg.rf.e1094397f4c32816a374e141d74d4a7e.jpg",
+        "expected": [
+          "biodegradable"
+        ],
+        "predicted": [
+          "biodegradable"
+        ],
+        "status": "correct"
+      },
+      {
+        "image": "biodegradable1079_jpg.rf.83e3eff49510543de3549d41f5f04ab2.jpg",
+        "expected": [
+          "biodegradable"
+        ],
+        "predicted": [
+          "biodegradable"
+        ],
+        "status": "correct"
+      },
+      {
+        "image": "biodegradable1087_jpg.rf.9161d4627bf7927f36d9ffcfd120a63a.jpg",
+        "expected": [
+          "biodegradable"
+        ],
+        "predicted": [
+          "plastic"
+        ],
+        "status": "mismatch"
+      },
+      {
+        "image": "biodegradable1092_jpg.rf.611a63f281f7b1485e286584dca4c8b4.jpg",
+        "expected": [
+          "biodegradable"
+        ],
+        "predicted": [
+          "biodegradable"
+        ],
+        "status": "correct"
+      }
+    ]
+  }
+}
