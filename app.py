@@ -13,6 +13,10 @@ sys.path.insert(0, str(ROOT))
 
 load_dotenv(ROOT / ".env")
 
+from src.config import load_streamlit_secrets  # noqa: E402
+
+load_streamlit_secrets(st.secrets)
+
 from src import MODEL_VERSION  # noqa: E402
 from src.analysis import aggregate_detections  # noqa: E402
 from src.cloud_storage import upload_image  # noqa: E402

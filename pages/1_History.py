@@ -12,6 +12,10 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 load_dotenv(ROOT / ".env")
 
+from src.config import load_streamlit_secrets  # noqa: E402
+
+load_streamlit_secrets(st.secrets)
+
 from src.database import analytics_summary  # noqa: E402
 from src.ui_theme import APP_CSS  # noqa: E402
 

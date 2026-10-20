@@ -27,18 +27,24 @@ def copy_images(source_dir: Path, dest_dir: Path) -> int:
 
 
 def write_data_yaml(processed_root: Path) -> Path:
-    payload = {
-        "path": str(processed_root.resolve()),
-        "train": "images/train",
-        "val": "images/valid",
-        "test": "images/test",
-        "names": {index: name for index, name in enumerate(DATASET_CLASSES)},
-        "nc": len(DATASET_CLASSES),
-    }
+    def config_for(dataset_root: Path | str) -> dict:
+        return {
+            "path": str(dataset_root),
+            "train": "images/train",
+            "val": "images/valid",
+            "test": "images/test",
+            "names": {index: name for index, name in enumerate(DATASET_CLASSES)},
+            "nc": len(DATASET_CLASSES),
+        }
+
     yaml_path = processed_root / "waste.yaml"
-    yaml_path.write_text(yaml.safe_dump(payload, sort_keys=False), encoding="utf-8")
+    yaml_path.write_text(yaml.safe_dump(config_for(processed_root.resolve()), sort_keys=False), encoding="utf-8")
     project_yaml = project_root() / "waste.yaml"
-    project_yaml.write_text(yaml.safe_dump(payload, sort_keys=False), encoding="utf-8")
+    try:
+        portable_root = processed_root.resolve().relative_to(project_root().resolve()).as_posix()
+    except ValueError:
+        portable_root = str(processed_root.resolve())
+    project_yaml.write_text(yaml.safe_dump(config_for(portable_root), sort_keys=False), encoding="utf-8")
     return yaml_path
 
 

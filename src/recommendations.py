@@ -27,7 +27,7 @@ GUIDANCE: Dict[str, Dict[str, Any]] = {
             "Food-soiled plastic can contaminate a whole recycling batch.",
             "Do not assume every plastic package is recyclable.",
         ],
-        "local_variation_note": "Accepted resin types (PET, HDPE, PP, film) vary by city and collection contractor.",
+        "local_variation_note": "Local rules differ: accepted resin types (PET, HDPE, PP, film) vary by city and collection contractor.",
         "checklist": [
             "Empty the container",
             "Rinse if needed",

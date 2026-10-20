@@ -1,4 +1,3 @@
-# Placeholder until scripts/prepare_dataset.py writes a path-specific copy.
 path: data/processed/garbage-classification-3
 train: images/train
 val: images/valid

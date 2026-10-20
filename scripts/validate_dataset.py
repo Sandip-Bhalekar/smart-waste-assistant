@@ -72,6 +72,7 @@ def validate_split(images_dir: Path, labels_dir: Path) -> dict:
             class_id, x, y, w, h = parsed
             if class_id < 0 or class_id >= len(DATASET_CLASSES):
                 invalid_class += 1
+                continue
             if min(x, y, w, h) < 0 or max(x, y) > 1 or max(w, h) > 1.05:
                 invalid_box += 1
             else:

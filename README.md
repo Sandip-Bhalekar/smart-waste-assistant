@@ -51,6 +51,8 @@ TACO is a better wild-scene dataset, but 60 sparse classes and broken image URLs
 
 Run `python scripts/inspect_dataset.py` after download. The measured counts overwrite [docs/dataset_report.md](docs/dataset_report.md).
 
+The supplied archive is present in this workspace and has been inspected. The original splits have major class-coverage gaps (glass is absent from test; paper has only 33 validation objects). Preprocessing and file/label validation pass, but do not use these split-level metrics to make a full six-class performance claim. For a final model evaluation, first prepare a reviewed, stratified holdout with adequate examples for every supported category, while keeping it separate from training and threshold selection.
+
 ### Class mapping
 
 | Dataset class | UI category |
@@ -125,7 +127,7 @@ If `models/best.pt` is missing, the app explains how to train. It will not quiet
 3. Leave `DATABASE_URL` empty to use local SQLite at `data/history.db`.
 4. Optional Streamlit Community Cloud: put the same keys in `.streamlit/secrets.toml` (never commit it).
 
-Without credentials the analyzer still runs. Failed cloud uploads are reported as failures, not as success.
+Without credentials the analyzer still runs. Streamlit secrets are read for hosted deployments; local `.env` values take precedence. Set `DATABASE_URL` to a PostgreSQL URL and install the listed PostgreSQL driver for remote prediction history. Failed cloud uploads are reported as failures, not as success.
 
 ## Tests
 
